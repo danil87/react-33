@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import './App.css';
+import List from './components/List';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends React.Component {
             person={{ name: 'maxim', age: '12' }}
             deleteForm={() => { this.setState({ ...this.state, isShowForm: false }) }} />
         }
+        <List />
       </div>
     );
   }

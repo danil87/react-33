@@ -5,17 +5,19 @@ import './Form.css';
 class Form extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            person: { 
-                name: 'Oleg', 
-                age: '25' 
-            } 
-        }
+        this.state = {
+            person: {
+                name: 'Oleg',
+                age: '25'
+            },
+            isDisabled: false
+        };
+        this.inputFocus = this.inputFocus.bind(this);
     }
 
     componentDidMount() {
-        if(this.props.person){
-            this.setState({...this.state, person: {...this.props.person}})
+        if (this.props.person) {
+            this.setState({ ...this.state, person: { ...this.props.person } })
         }
         console.log('Form did mount');
     }
@@ -32,11 +34,18 @@ class Form extends React.Component {
         const key = event.target.name;
         const value = event.target.value;
         this.setState({
-            ...this.state, 
+            ...this.state,
             person: {
-                ...this.state.person, 
+                ...this.state.person,
                 [key]: value
-            }});
+            },
+            isDisabled: value.includes('реакт')
+        });
+    }
+
+    inputFocus() {
+        console.log(this.textInput);
+        this.textInput.focus();
     }
 
     render() {
@@ -54,10 +63,21 @@ class Form extends React.Component {
                         sx={{ marginBottom: '20px' }}
                         onChange={this.changeStatePerson} />
                 ))}
+                <input
+                    placeholder='Focus'
+                    type='text'
+                    ref={(el) => { this.textInput = el; }} />
+                
                 <Button
                     className='Form__button'
                     variant="outlined"
-                    onClick={() => deleteForm()}>Удалить форму</Button>
+                    onClick={() => deleteForm()}
+                    disabled={this.state.isDisabled}>Удалить форму</Button>
+                
+                <Button
+                    className='Form__button'
+                    variant="outlined"
+                    onClick={this.inputFocus}>Focus</Button>
             </Box>
         )
     }

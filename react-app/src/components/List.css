@@ -1,0 +1,10 @@
+.List__h2,
+.List__posts {
+    margin: 20px;
+}
+
+.List__posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

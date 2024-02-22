@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from './components/Form';
-import { useState } from 'react';
 import './App.css';
 
 class App extends React.Component {
